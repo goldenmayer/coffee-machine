@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Slab&display=swap');
+/*font-family: 'Montserrat', sans-serif;
+font-family: 'Roboto Slab', serif;*/
+
+.coffee-list {
+  background-image: url("img/background.jpg");
+  background-size: cover; /*contain - заполнение по ширине, cover - растянуть*/
+}
+.coffee-item {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: calc(75px / 2);
+  margin: 15px 0;
+  cursor: pointer; /*пальчик при наведении*/
+}
+
+.coffee-item:hover {
+  background-color: rgba(50, 50, 50, .7);
+}
+
+.coffee-item img {
+  width: 75px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.coffee-item span {
+  font-family: 'Roboto Slab', serif;
+  color: white;
+  margin-left: 30px;
+  letter-spacing: 1px;
+}
+
+.coffee-oper {
+  background-color: rgb(220, 220, 220);
+  padding: 15px;
+}
+
+.display {
+  border: 2px solid darkgreen;
+  background-color: lightgreen;
+  padding: 10px;
+}
+
+.display span {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.cup img, .atm img{ /*применяем множественный селектор и для кружки и для АТМ, автоматически устанавливает ширину*/
+  width: 100%;
+}
+
+.change-box {
+  border: 3px solid rgb(100, 100, 100);
+  background-color: rgb(200, 200, 200);
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
