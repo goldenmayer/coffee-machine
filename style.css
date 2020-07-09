@@ -45,8 +45,17 @@ font-family: 'Roboto Slab', serif;*/
   font-family: 'Montserrat', sans-serif;
 }
 
+.progress-bar {
+  transition: none;
+}
+
 .cup img, .atm img{ /*применяем множественный селектор и для кружки и для АТМ, автоматически устанавливает ширину*/
   width: 100%;
+}
+
+.cup img {  /* кружка пропала*/
+  display: none;
+  opacity: 0;
 }
 
 .change-box {
