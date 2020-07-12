@@ -46,12 +46,13 @@
             </div>
             <div class="col-6">
               <div class="input-group mb-3">
-              <input type="text" class="form-control balance" placeholder="Баланс">
+              <input type="text" class="form-control balance" placeholder="Баланс" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">&#8381;</span><!--&#8381; - спец символ для обозначения рубля-->
               </div>
             </div>
               <div class="atm">
+                <div class="bill-container"></div>
                 <img src="img/bill_acc.png" alt="">
               </div>
               <button class="my-3 btn btn-primary btn-block change-button">Сдача</button>
@@ -60,6 +61,12 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="money">
+      <img src="img/50rub.jpg" data-cost="50" alt="">
+      <img src="img/100rub.jpg" data-cost="100"alt="">
+      <img src="img/500rub.jpg" data-cost="500" alt="">
+      
     </div>
     <!-- Optional JavaScript -->
     <!--<script src="lesson.js"></script>-->

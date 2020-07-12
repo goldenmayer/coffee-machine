@@ -53,6 +53,8 @@ font-family: 'Roboto Slab', serif;*/
   width: 100%;
 }
 
+
+
 .cup img {  /* кружка пропала*/
   display: none;
   opacity: 0;
@@ -65,9 +67,9 @@ font-family: 'Roboto Slab', serif;*/
   box-sizing: border-box;
 }
 
-
-
-
+.money img {
+  max-width: 200px
+}
 
 
 
