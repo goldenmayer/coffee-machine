@@ -52,7 +52,7 @@
               </div>
             </div>
               <div class="atm">
-                <div class="bill-container"></div>
+                <div class="cash-container"></div>
                 <img src="img/bill_acc.png" alt="">
               </div>
               <button class="my-3 btn btn-primary btn-block change-button">Сдача</button>

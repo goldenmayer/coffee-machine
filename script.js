@@ -142,13 +142,26 @@ function takeMoney(event) {
   bill.onmouseup = function() {
     window.onmousemove = null;
     if ( inAtm(bill) ) {
-      console.log( bill.getAttribute("data-cost") );
-      console.log( bill.dataset.cost );
-      balance.value = +balance.value + +bill.dataset.cost; // для сложения баланса на экране делаем: приведение к числу balance.value , слодение  и приведение кчислу bill.dataset.cost
-      bill.remove(); // удаляем элемент , т.о. при попадании в банкомат купюра исчезает
+      let cashContainer = document.querySelector(".cash-container");
+      bill.style.position = "";
+      bill.style.transform = "rotate(90deg) translateX(25%)";
+      cashContainer.append(bill);// присоединить в конец элемента
+      bill.style.transition = "transform 1.5s";
+      setTimeout(() => {
+        bill.style.transform = "rotate(90deg) translateX(-75%)";
+        bill.ontransitionend = () => {
+          balance.value = +balance.value + +bill.dataset.cost; 
+          bill.remove();
+        };
+      }, 10); 
     }
   };
-}
+}      
+                                                    /*console.log( bill.getAttribute("data-cost") );
+                                                    console.log( bill.dataset.cost );
+                                                    balance.value = +balance.value + +bill.dataset.cost; // для сложения баланса на экране делаем: приведение к числу balance.value , слодение  и приведение кчислу bill.dataset.cost
+                                                    bill.remove(); */// удаляем элемент , т.о. при попадании в банкомат купюра исчезает
+
 
 function inAtm(bill) {
   let atm = document.querySelector(".atm img");
@@ -180,7 +193,94 @@ function inAtm(bill) {
     bill: [billLeftX, billRightX, billY],
   };*/
 
+// Получение сдачи, создание элементов с использованием Java Script
 
+let changeButton = document.querySelector(".change-button"); // находим кнопку
+changeButton.onclick = takeChange;
+
+function takeChange() { // данной рекрусивной функцией (ф-ция вызывает саму себя) мы  вызываем takeChange, сравниваем балансе  >= 10, если условия выполняются, то появляется монетка, и ф-ция повторяется до тех пор пока не дойдет до 0
+  if (+balance.value >= 10) { // +balance.value - приведение к числу
+    createCoin("10");
+    balance.value -= 10;
+    return setTimeout(takeChange, 300);
+  } else if (+balance.value >= 5) {
+    createCoin("5");
+    balance.value -= 5;
+    return setTimeout(takeChange, 300);
+  } else if (+balance.value >= 2) {
+    createCoin("2");
+    balance.value -= 2;
+    return setTimeout(takeChange, 300);
+  } else if (+balance.value >= 1) {
+    createCoin("1");
+    balance.value -= 1;
+    return setTimeout(takeChange, 300);
+  }
+}
+
+function createCoin(cost) {
+  let coinSrc = "";
+  switch (cost) {
+    case "10":
+      coinSrc = "img/10rub.png";
+      break;
+    case "5":
+      coinSrc = "img/5rub.png";
+      break;
+    case "2":
+      coinSrc = "img/2rub.png";
+      break;
+    case "1":
+      coinSrc = "img/1rub.png";
+      break;
+    default:
+    console.error("Такой монеты не сущекствует");
+  }
+  
+/*  let coinSrc = "";
+  if (cost == "10") {
+    coinSrc = "img/10rub.png";
+  } else if (cost == "5") {
+    coinSrc = "img/5rub.png";
+  } else if (cost == "5") {
+    coinSrc = "img/2rub.png";
+  } else if (cost == "5") {
+    coinSrc = "img/1rub.png";
+  } else {
+  }*/
+  
+  
+  let changeBox = document.querySelector(".change-box");
+  let changeBoxWidth = changeBox.getBoundingClientRect().width; // для того что бы монетки падали в разные места, в разнобой
+  let changeBoxHeight = changeBox.getBoundingClientRect().height;
+  let coin = document.createElement("img");
+  coin.setAttribute("src", coinSrc);
+  coin.style.width = "50px";
+  coin.style.cursor = "pointer";
+  coin.style.position = "absolute";
+  coin.style.top = Math.floor(Math.random() * (changeBoxHeight - 50)) + "px";
+  coin.style.left = Math.floor(Math.random() * (changeBoxWidth - 50)) + "px";
+  changeBox.append(coin); // Добавляет элемент в конец родительского
+  //changeBox.prepend(coin); // Добавляет элемент в начало родительского
+  //changeBox.after(coin); // Добавляет элемент после родительского
+  //changeBox.before(coin); // Добавляет элемент до родительского
+  //changeBox.replaceWith(coin); // Заменяет родительский элемент
+  coin.style.transition = "transform .5s, opacity .5s";
+  coin.style.transform = "translateY(-20%)";
+  coin.style.opacity = 0;
+  setTimeout(() => {
+    coin.style.transform = "translateY(0%)";
+    coin.style.opacity = 1;
+  },10);
+  
+  coin.onclick = () => { // анимация для удаления/подбирания монет
+    coin.style.transform = "translateY(-20%)";
+    coin.style.opacity = 0;
+    coin.ontransitionend = () => {
+      coin.remove();
+    };
+  };
+}
 
 
 

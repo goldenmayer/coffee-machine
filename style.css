@@ -53,8 +53,6 @@ font-family: 'Roboto Slab', serif;*/
   width: 100%;
 }
 
-
-
 .cup img {  /* кружка пропала*/
   display: none;
   opacity: 0;
@@ -65,12 +63,31 @@ font-family: 'Roboto Slab', serif;*/
   background-color: rgb(200, 200, 200);
   min-height: 100px;
   box-sizing: border-box;
+  position: relative; /*Для того что бы монеты появлялись только в контейнере для сдачи*/
 }
 
 .money img {
-  max-width: 200px
+  max-width: 200px;
+  cursor: pointer;
+  z-index: 1000;
 }
 
+.cash-container { /* установили анимацию красный контейнер для приема денег*/
+  position: absolute;
+ /* background-color: red;*/
+  width: 70%;
+  height: 60%;
+  margin: 15% 7%;
+  overflow: hidden; /* анимация уезжающей купюры - пропадают*/
+}
+
+.atm {
+  position: relative;
+  z-index: 10;
+}
+.change-button, .change-box {
+  z-index: 100;
+}
 
 
 
